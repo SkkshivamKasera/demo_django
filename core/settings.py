@@ -84,7 +84,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 # }
 
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    "default": dj_database_url.parse("postgres://testdb_gilz_user:K1wsc3gAJiIYe56oI1TmjtylMm2zCsTd@dpg-cn2h9o0cmk4c73dh3frg-a.oregon-postgres.render.com/testdb_gilz")
 }
 
 
