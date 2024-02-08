@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <form class="card p-3" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1 class="text-center">Add Receipe</h1>
+            <hr/>
+            <div class="mb-3">
+                <label for="receipe-name" class="form-label">Receipe Name</label>
+                <input name="receipe" type="text" class="form-control" id="receipe-name" required>
+            </div>
+            <div class="mb-3">
+                <label for="receipe-desc" class="form-label">Receipe Description</label>
+                <textarea name="desc" class="form-control" id="receipe-desc" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="receipe-img" class="form-label">Receipe Image</label>
+                <input name="image" type="file" accept="image/*" class="form-control"  required id="receipe-img">
+            </div>
+            <button type="submit" class="btn btn-success">Add Receipe</button>
+        </form>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Receipe Name</th>
+                <th scope="col">Receipe Description</th>
+                <th scope="col">Receipe Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for receipe  in receipes  %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{receipe.receipe}}</td>
+                <td>{{receipe.desc}}</td>
+                <td><img src="/media/{{receipe.image}}" style="width:100px;"/></td>
+                <td>
+                    <a href="/delete-receipe/{{receipe.id}}" class="btn btn-danger">Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</html>
